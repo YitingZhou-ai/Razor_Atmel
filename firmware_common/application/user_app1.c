@@ -136,14 +136,6 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
-
-} /* end UserApp1SM_Idle() */
-    
-
-/*-------------------------------------------------------------------------------------------------------------------*/
-/* Handle an error */
-static void UserApp1SM_Error(void)          
-{
   static u8 u8Counter = 0;
   static u16 u16BlinkCount = 0;
   u16BlinkCount++;  
@@ -193,6 +185,14 @@ static void UserApp1SM_Error(void)
       LedOff(GREEN);  
     }
   }
+} /* end UserApp1SM_Idle() */
+    
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* Handle an error */
+static void UserApp1SM_Error(void)          
+{
+ 
 } /* end UserApp1SM_Error() */
 
 
