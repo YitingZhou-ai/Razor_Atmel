@@ -144,7 +144,55 @@ static void UserApp1SM_Idle(void)
 /* Handle an error */
 static void UserApp1SM_Error(void)          
 {
-  
+  static u8 u8Counter = 0;
+  static u16 u16BlinkCount = 0;
+  u16BlinkCount++;  
+  if(u16BlinkCount == 500) 
+  {   
+    u16BlinkCount = 0;     
+    /* Update the counter and roll at 16 */   
+    u8Counter++;   
+    if(u8Counter == 16)   
+    {  
+      u8Counter = 0;   
+    }
+    
+    /* Parse the current count to set the LEDs. 
+    RED is bit 0, ORANGE is bit 1,   
+    YELLOW is bit 2, GREEN is bit 3. */        
+    if(u8Counter & 0x01)   
+    {   
+      LedOn(RED);   
+    }   
+    else   
+    { 
+      LedOff(RED);   
+    } 
+    if(u8Counter & 0x02)    
+    {     
+      LedOn(ORANGE);  
+    }    
+    else    
+    {      
+      LedOff(ORANGE);  
+    } 
+    if(u8Counter & 0x04)   
+    {     
+      LedOn(YELLOW);   
+    }    
+    else    
+    { 
+      LedOff(YELLOW);   
+    } 
+    if(u8Counter & 0x08)  
+    {    
+      LedOn(GREEN);   
+    }    
+    else    
+    {    
+      LedOff(GREEN);  
+    }
+  }
 } /* end UserApp1SM_Error() */
 
 
