@@ -87,7 +87,9 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
- 
+   u8 au8Message[] = "Hello world!"; 
+   LCDMessage(LINE1_START_ADDR, au8Message); 
+   
   /* If good initialization, set state to Idle */
   if( 1 )
   {
