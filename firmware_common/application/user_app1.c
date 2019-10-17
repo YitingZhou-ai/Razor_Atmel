@@ -136,6 +136,60 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
+if( IsButtonPressed(BUTTON1) )
+{
+  /* The button is currently pressed, so make sure the LED is on */
+  LedOn(PURPLE);
+}
+else
+{
+  /* The button is not pressed, so make sure the LED is off */
+  LedOff(PURPLE);
+}
+if( IsButtonPressed(BUTTON2) )
+{
+  /* The button is currently pressed, so make sure the LED is on */
+  LedOn(BLUE);
+}
+else
+{
+  /* The button is not pressed, so make sure the LED is off */
+  LedOff(BLUE);
+}
+
+static u32 u32Counter= 0; 
+static u16 u16BlinkCount = 0; 
+static bool bLightIsOn =FALSE; 
+static u32 u32Counter1=1024;
+if(1)
+{
+  u32Counter++;
+u16BlinkCount++;
+if(IsButtonPressed(BUTTON0))
+{ 
+  u16BlinkCount=0;
+  u32Counter=0;
+  u32Counter1=u32Counter1/2;
+ if(u32Counter1<10)
+  {
+    u32Counter1=1024;
+  }
+  
+}
+if(u32Counter== u32Counter1)
+{ u32Counter= 0; 
+
+if(bLightIsOn) 
+{ 
+LedOff(YELLOW); 
+} 
+else 
+{ 
+LedOn(YELLOW); 
+} 
+bLightIsOn= !bLightIsOn; 
+}
+}
 
 } /* end UserApp1SM_Idle() */
     
