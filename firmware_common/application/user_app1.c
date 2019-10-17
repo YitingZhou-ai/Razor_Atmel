@@ -87,7 +87,8 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
- 
+  u8 au8Message[] = "       START!      "; 
+  LCDMessage(LINE1_START_ADDR, au8Message); 
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -136,7 +137,57 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
-
+  static u16 u16BlinkCount=0;
+  static u8 u8Counter=1;
+  static u8 u8Return=0;
+  u16BlinkCount++;
+  if(IsButtonPressed(BUTTON3))
+  {
+    u8Return=0;
+  }
+  if(IsButtonPressed(BUTTON2))
+  {
+    u8Return=1;
+  }
+  if(IsButtonPressed(BUTTON1))
+  {
+    u8Return=2;
+  }
+  if(IsButtonPressed(BUTTON0))
+  {
+    u8Return=3;
+  }
+  
+  if(u16BlinkCount==500)
+  {u16BlinkCount=0;
+  if(u8Counter==9)
+  {u8Counter=0;}
+  {if(u8Counter==0)
+    LedOn(RED);
+  else
+    LedOff(RED);
+  if(u8Counter==1)
+  { LedOn(ORANGE);
+    LedOff(RED);}
+  else
+    LedOff(ORANGE);
+  if(u8Counter==2)
+  { LedOn(YELLOW);
+    LedOff(ORANGE);}
+  else
+    LedOff(YELLOW);
+  if(u8Counter==3)
+  { LedOn(GREEN);
+    LedOff(YELLOW);}
+  else
+    LedOff(GREEN);
+  }
+  if (u8Return==u8Counter)
+  {
+    u8 au8Message[] = "       RIGHT!      ";
+      u8Counter=rand()%4;
+  }
+  }
 } /* end UserApp1SM_Idle() */
     
 
@@ -146,7 +197,6 @@ static void UserApp1SM_Error(void)
 {
   
 } /* end UserApp1SM_Error() */
-
 
 
 /*--------------------------------------------------------------------------------------------------------------------*/
